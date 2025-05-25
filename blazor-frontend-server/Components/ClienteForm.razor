@@ -1,0 +1,41 @@
+@inject ClienteService ClienteService
+
+<div class="form-group">
+    <label>Nome:</label>
+    <input @bind="Nome" class="form-control" />
+</div>
+<button class="btn btn-primary" @onclick="Salvar">Salvar</button>
+
+@if (!string.IsNullOrEmpty(Erro))
+{
+    <p class="text-danger">@Erro</p>
+}
+
+@code {
+    [Parameter] public EventCallback OnClienteSalvo { get; set; }
+
+    private string Nome = "";
+    private string Erro = "";
+
+    private async Task Salvar()
+    {
+        if (string.IsNullOrWhiteSpace(Nome))
+        {
+            Erro = "Nome é obrigatório.";
+            return;
+        }
+
+        var sucesso = await ClienteService.SalvarAsync(new ClienteDto { Nome = Nome });
+
+        if (sucesso)
+        {
+            Nome = "";
+            Erro = "";
+            await OnClienteSalvo.InvokeAsync();
+        }
+        else
+        {
+            Erro = "Erro ao salvar cliente.";
+        }
+    }
+}

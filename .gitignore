@@ -1,0 +1,59 @@
+# Global ignores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+.env
+node_modules/
+dist/
+build/
+coverage/
+
+# .NET (backend-api-dotnet6, bff-gateway, blazor-frontend-server)
+**/bin/
+**/obj/
+**/*.user
+**/*.suo
+**/*.userosscache
+**/*.sln.docstates
+**/*.swp
+**/TestResults/
+**/.vs/
+*.db
+*.pdb
+*.cache
+
+# React (frontend-react)
+frontend-react/node_modules/
+frontend-react/.env
+frontend-react/.cache/
+frontend-react/.next/
+frontend-react/dist/
+frontend-react/.turbo/
+frontend-react/coverage/
+frontend-react/.eslintcache
+
+# Vite build outputs
+frontend-react/.vite/
+frontend-react/vite.config.js
+
+# Blazor
+blazor-frontend-server/wwwroot/css/site.css.map
+blazor-frontend-server/wwwroot/css/bootstrap.min.css.map
+
+# Azure Pipelines
+*.yml~
+
+# Docker
+**/.dockerignore
+docker-compose.override.yml
+*.tar
+
+# Docs
+docs/*.png
+
+# Tests
+**/__snapshots__/
+**/.nyc_output/
+**/.testcontainers/

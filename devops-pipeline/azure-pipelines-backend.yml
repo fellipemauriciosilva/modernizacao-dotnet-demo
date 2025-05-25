@@ -1,0 +1,22 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '6.0.x'
+
+- script: |
+    dotnet restore backend-api-dotnet6/Web
+    dotnet build backend-api-dotnet6/Web --configuration $(buildConfiguration)
+    dotnet test backend-api-dotnet6/Tests --configuration $(buildConfiguration)
+  displayName: 'Build and Test .NET API'

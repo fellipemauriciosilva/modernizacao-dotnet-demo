@@ -1,0 +1,10 @@
+@model legacy_mvc.Models.Cliente
+
+<h2>Cadastro de Cliente</h2>
+
+<form id="clienteForm">
+    @Html.Partial("_FormPartial", Model)
+    <button type="submit">Salvar</button>
+</form>
+
+<script src="/wwwroot/js/cliente.js"></script>

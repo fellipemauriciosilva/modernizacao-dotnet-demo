@@ -1,0 +1,41 @@
+@page "/clientes"
+@inject ClienteService ClienteService
+
+<h3>Cadastro de Cliente</h3>
+
+<ClienteForm OnClienteSalvo="CarregarClientes" />
+
+<hr />
+
+<h4>Lista de Clientes</h4>
+@if (clientes is null)
+{
+    <p>Carregando...</p>
+}
+else if (!clientes.Any())
+{
+    <p>Nenhum cliente cadastrado.</p>
+}
+else
+{
+    <ul>
+        @foreach (var cliente in clientes)
+        {
+            <li>@cliente.Nome</li>
+        }
+    </ul>
+}
+
+@code {
+    private List<ClienteDto>? clientes;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await CarregarClientes();
+    }
+
+    private async Task CarregarClientes()
+    {
+        clientes = await ClienteService.ListarAsync();
+    }
+}
