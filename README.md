@@ -54,7 +54,7 @@ docker-compose up --build
 
 ### Backend:
 ```bash
-cd backend-api-dotnet6
+cd backend-api-dotnet6\Web
 dotnet run
 ````
 ### Frontend:
